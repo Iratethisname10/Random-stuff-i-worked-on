@@ -33,7 +33,7 @@ local gunlist = mainTab:CreateParagraph(
 )
 
 local SpamDropGuns1 = mainTab:CreateToggle({
-    Name = "spam Drop All Guns",
+    Name = "spam Drop All Guns | puts you in godmode",
     CurrentValue = false,
     Flag = "spamguns",
     Callback = function(v)
