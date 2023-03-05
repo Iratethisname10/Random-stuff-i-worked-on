@@ -15,7 +15,9 @@ local mainTab = Window:CreateTab("Main", 4483362458)
 local mainSection = mainTab:CreateSection("Murder Mystery 2")
 
 local vars = {
-    SpamDrop = false,
+    SpamDropAll = false,
+    SpamDropdark = false,
+    SpamDropgluger = false,
     DropDelay = 0,
     spamGetGun = false,
     getgundelay = 0,
@@ -23,8 +25,15 @@ local vars = {
     OnlyDrop = "Darkbringer"
 }
 
-local SpamDropGuns = mainTab:CreateToggle({
-    Name = "spam Drop Guns",
+local gunlist = mainTab:CreateParagraph(
+    {
+        Title = "Droppable Guns:", 
+        Content = "Darkbringer, GingerLuger"
+    }
+)
+
+local SpamDropGuns1 = mainTab:CreateToggle({
+    Name = "spam Drop All Guns",
     CurrentValue = false,
     Flag = "spamguns",
     Callback = function(v)
@@ -46,12 +55,52 @@ local SpamDropGuns = mainTab:CreateToggle({
     end,
 })
 
-local gunlist = mainTab:CreateParagraph(
-    {
-        Title = "Droppable Guns:", 
-        Content = "Darkbringer, GingerLuger"
-    }
-)
+local SpamDropGuns2 = mainTab:CreateToggle({
+    Name = "spam Drop Darkbringer",
+    CurrentValue = false,
+    Flag = "spamguns",
+    Callback = function(v)
+        vars.SpamDropdark = v
+        repeat
+            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if v:IsA("Tool") then
+                    v.Parent = game.Players.LocalPlayer.Character
+                end
+            end
+            task.wait()
+            for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v:IsA("Tool") and v.Name == "Darkbringer" then
+                    v.Parent = workspace
+                end
+            end
+            wait(vars.DropDelay)
+        until vars.SpamDropdark == false
+    end,
+})
+
+local SpamDropGuns3 = mainTab:CreateToggle({
+    Name = "spam Drop Ginger Luger",
+    CurrentValue = false,
+    Flag = "spamguns",
+    Callback = function(v)
+        vars.SpamDropgluger = v
+        repeat
+            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if v:IsA("Tool") then
+                    v.Parent = game.Players.LocalPlayer.Character
+                end
+            end
+            task.wait()
+            for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v:IsA("Tool") and v.Name == "GingerLuger" then
+                    v.Parent = workspace
+                end
+            end
+            wait(vars.DropDelay)
+        until vars.SpamDropgluger == false
+    end,
+})
+
 
 local droppydelay = mainTab:CreateSlider({
     Name = "Drop Delay",
