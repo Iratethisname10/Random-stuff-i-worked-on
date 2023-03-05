@@ -18,7 +18,9 @@ local vars = {
     SpamDrop = false,
     DropDelay = 0,
     spamGetGun = false,
-    getgundelay = 0
+    getgundelay = 0,
+    BlackList = false,
+    OnlyDrop = "Darkbringer"
 }
 
 local SpamDropGuns = mainTab:CreateToggle({
@@ -35,7 +37,7 @@ local SpamDropGuns = mainTab:CreateToggle({
             end
             task.wait()
             for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                if v:IsA("Tool") and v.Name == "Darkbringer" then
+                if v:IsA("Tool") and v.Name == "Darkbringer" or "GingerLuger" then
                     v.Parent = workspace
                 end
             end
@@ -43,6 +45,13 @@ local SpamDropGuns = mainTab:CreateToggle({
         until vars.SpamDrop == false
     end,
 })
+
+local gunlist = mainTab:CreateParagraph(
+    {
+        Title = "Droppable Guns:", 
+        Content = "Darkbringer, GingerLuger"
+    }
+)
 
 local droppydelay = mainTab:CreateSlider({
     Name = "Drop Delay",
