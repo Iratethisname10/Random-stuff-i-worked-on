@@ -47,7 +47,7 @@ local SpamDropGuns = mainTab:CreateToggle({
 local droppydelay = mainTab:CreateSlider({
     Name = "Drop Delay",
     Range = {0, 5},
-    Increment = 1,
+    Increment = 0.5,
     CurrentValue = vars.DropDelay,
     Flag = "dro-pdar",
     Callback = function(v)
@@ -71,10 +71,19 @@ local SpamDropGuns = mainTab:CreateToggle({
 local getdelay = mainTab:CreateSlider({
     Name = "Get Gun Delay",
     Range = {0, 5},
-    Increment = 1,
+    Increment = 0.5,
     CurrentValue = vars.getgundelay,
     Flag = "dro-pdar2",
     Callback = function(v)
         vars.getgundelay = v
+    end,
+})
+
+local miscsex = mainTab:CreateSection("Other stuff")
+
+local Button = mainTab:CreateButton({
+    Name = "Delete Ui",
+    Callback = function()
+        Rayfield:Destroy()
     end,
 })
