@@ -32,77 +32,62 @@ local gunlist = mainTab:CreateParagraph(
     }
 )
 
-local SpamDropGuns1 = mainTab:CreateToggle({
-    Name = "spam Drop All Guns | puts you in godmode",
-    CurrentValue = false,
-    Flag = "spamguns",
-    Callback = function(v)
-        vars.SpamDrop = v
-        repeat
-            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                if v:IsA("Tool") then
-                    v.Parent = game.Players.LocalPlayer.Character
-                end
-            end
-            task.wait()
-            for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                if v:IsA("Tool") and v.Name == "Darkbringer" or "GingerLuger" then
-                    v.Parent = workspace
-                end
-            end
-            wait(vars.DropDelay)
-        until vars.SpamDrop == false
-    end,
-})
-
-local SpamDropGuns2 = mainTab:CreateToggle({
-    Name = "spam Drop Darkbringer",
+SpamDropGuns2 = mainTab:CreateToggle({
+    Name = "Spam Drop Darkbringer",
     CurrentValue = false,
     Flag = "spamguns",
     Callback = function(v)
         vars.SpamDropdark = v
-        repeat
-            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                if v:IsA("Tool") then
-                    v.Parent = game.Players.LocalPlayer.Character
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("Darkbringer") then
+            repeat
+                for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v:IsA("Tool") then
+                        v.Parent = game.Players.LocalPlayer.Character
+                    end
                 end
-            end
-            task.wait()
-            for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                if v:IsA("Tool") and v.Name == "Darkbringer" then
-                    v.Parent = workspace
+                task.wait()
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("Tool") and v.Name == "Darkbringer" then
+                        v.Parent = workspace
+                    end
                 end
-            end
-            wait(vars.DropDelay)
-        until vars.SpamDropdark == false
+                wait(vars.DropDelay)
+            until vars.SpamDropdark == false
+        else
+            SpamDropGuns2:Set(false)
+        end
     end,
 })
 
-local SpamDropGuns3 = mainTab:CreateToggle({
-    Name = "spam Drop Ginger Luger",
+SpamDropGuns3 = mainTab:CreateToggle({
+    Name = "Spam Drop Ginger Luger",
     CurrentValue = false,
     Flag = "spamguns",
     Callback = function(v)
         vars.SpamDropgluger = v
-        repeat
-            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                if v:IsA("Tool") then
-                    v.Parent = game.Players.LocalPlayer.Character
+        if game.Players.LocalPlayer.Backpack:FindFirstChild("GingerLuger") then
+            repeat
+                for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                    if v:IsA("Tool") then
+                        v.Parent = game.Players.LocalPlayer.Character
+                    end
                 end
-            end
-            task.wait()
-            for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                if v:IsA("Tool") and v.Name == "GingerLuger" then
-                    v.Parent = workspace
+                task.wait()
+                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                    if v:IsA("Tool") and v.Name == "GingerLuger" then
+                        v.Parent = workspace
+                    end
                 end
-            end
-            wait(vars.DropDelay)
-        until vars.SpamDropgluger == false
+                wait(vars.DropDelay)
+            until vars.SpamDropgluger == false
+        else
+            SpamDropGuns3:Set(false)
+        end
     end,
 })
 
 
-local droppydelay = mainTab:CreateSlider({
+droppydelay = mainTab:CreateSlider({
     Name = "Drop Delay",
     Range = {0, 5},
     Increment = 0.5,
@@ -113,7 +98,7 @@ local droppydelay = mainTab:CreateSlider({
     end,
 })
 
-local SpamDropGuns = mainTab:CreateToggle({
+SpamDropGuns = mainTab:CreateToggle({
     Name = "Auto Get Fake Gun",
     CurrentValue = false,
     Flag = "spamguns",
@@ -126,7 +111,7 @@ local SpamDropGuns = mainTab:CreateToggle({
     end,
 })
 
-local getdelay = mainTab:CreateSlider({
+getdelay = mainTab:CreateSlider({
     Name = "Get Gun Delay",
     Range = {0, 5},
     Increment = 0.5,
