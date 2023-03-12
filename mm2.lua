@@ -38,24 +38,20 @@ SpamDropGuns2 = mainTab:CreateToggle({
     Flag = "spamguns",
     Callback = function(v)
         vars.SpamDropdark = v
-        if game.Players.LocalPlayer.Backpack:FindFirstChild("Darkbringer") then
-            repeat
-                for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v:IsA("Tool") then
-                        v.Parent = game.Players.LocalPlayer.Character
-                    end
+        repeat
+            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if v:IsA("Tool") then
+                    v.Parent = game.Players.LocalPlayer.Character
                 end
-                task.wait()
-                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                    if v:IsA("Tool") and v.Name == "Darkbringer" then
-                        v.Parent = workspace
-                    end
+            end
+            task.wait()
+            for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v:IsA("Tool") and v.Name == "Darkbringer" then
+                    v.Parent = workspace
                 end
-                wait(vars.DropDelay)
-            until vars.SpamDropdark == false
-        else
-            SpamDropGuns2:Set(false)
-        end
+            end
+            wait(vars.DropDelay)
+         until vars.SpamDropdark == false
     end,
 })
 
@@ -65,24 +61,20 @@ SpamDropGuns3 = mainTab:CreateToggle({
     Flag = "spamguns",
     Callback = function(v)
         vars.SpamDropgluger = v
-        if game.Players.LocalPlayer.Backpack:FindFirstChild("GingerLuger") then
-            repeat
-                for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-                    if v:IsA("Tool") then
-                        v.Parent = game.Players.LocalPlayer.Character
-                    end
+        repeat
+            for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+                if v:IsA("Tool") then
+                    v.Parent = game.Players.LocalPlayer.Character
                 end
-                task.wait()
-                for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-                    if v:IsA("Tool") and v.Name == "GingerLuger" then
-                        v.Parent = workspace
-                    end
+            end
+            task.wait()
+            for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
+                if v:IsA("Tool") and v.Name == "GingerLuger" then
+                    v.Parent = workspace
                 end
-                wait(vars.DropDelay)
-            until vars.SpamDropgluger == false
-        else
-            SpamDropGuns3:Set(false)
-        end
+            end
+            wait(vars.DropDelay)
+        until vars.SpamDropgluger == false
     end,
 })
 
